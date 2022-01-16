@@ -1,0 +1,33 @@
+import * as React from 'react';
+import renderer from 'react-test-renderer'
+import { ProductImage, ProductCard } from '../../src/components'
+import { product2 } from '../data/products'
+
+describe("ProductImage", () => {
+    test("should show the correct component with the custom image", () => {
+
+        const wrapper = renderer.create(
+            <ProductImage img='https://test.com/test.png'/>
+        )
+        expect( wrapper.toJSON() ).toMatchSnapshot()
+
+    })
+
+    test('should render the component with the product image', () => {
+        
+        const wrapper = renderer.create(
+            <ProductCard product={ product2 }>
+                {
+                    () => (
+                        <ProductImage/>
+                    )
+                }
+            </ProductCard>
+        )
+
+        expect( wrapper.toJSON() ).toMatchSnapshot()
+
+    })
+    
+
+})
